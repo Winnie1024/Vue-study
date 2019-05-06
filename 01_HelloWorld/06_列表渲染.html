@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="demo">
+			<h2>测试：v-for遍历数组</h2>
+			<input type="text" v-model="searchName"/>
+			<ul>
+				<li v-for="(p,index) in filterPersons" :key="index">
+				{{index}}--{{p.name}}--{{p.age}}--
+				</li>
+				<button @click="setOrderType(2)">年龄升序</button>
+				<button @click="setOrderType(1)">年龄降序</button>
+				<button @click="setOrderType(0)">原本顺序</button>
+			</ul>
+		</div>
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<script type="text/javascript">
+
+				var vm = new Vue({
+					el:"#demo",
+					data:{
+						searchName:'',
+						orderType:0,
+						persons:[
+							{name:'Tom',age:18},
+							{name:'Jack',age:17},
+							{name:'Bob',age:19},
+							{name:'Mary',age:16}
+						]
+					},
+					methods:{
+						setOrderType(orderType){
+							console.log('2')
+							this.orderType = orderType
+						}
+					},
+					computed:{
+						filterPersons(){
+// 							const searchName = this.searchName
+// 							const persons = this.persons
+// 							const orderType = this.orderType
+							//获取数据 简写
+							const {searchName,persons,orderType} = this
+							let filterPersons = this.persons.filter(p => p.name.indexOf(searchName)!==-1)
+							// filterPersons = persons.filter(p => p.name.indexOf(searchName)!==-1)
+							if(orderType!==0){
+								filterPersons.sort(function(p1,p2){
+									if(orderType===2){//2是升序
+										return p1.age-p2.age
+
+									}else{
+										return p2.age-p1.age
+
+									}
+								})
+							}
+							return filterPersons
+						},
+						
+						
+					}
+				})
+			</script>
+	</body>
+</html>

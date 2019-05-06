@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="demo">
+			<h2>1.绑定监听</h2>
+			<button @click="test1">test1</button>
+			<button @click="test2('abc')">test2</button>
+			<button @click="test3('abcd',$event)">test3</button>
+			<h2>2.事件修饰符</h2>
+			<a href="http://www.baidu.com" @click.prevent="test4">百度一下</a>
+			<div style="width: 200px;height: 200px;background: red" @click="test5">
+			  <div style="width: 100px;height: 100px;background: blue" @click="test6"></div>
+			</div>
+			<h2>3.按键修饰符</h2>
+			<input type="text" @keyup.13="test7" /><!-- enter的keycode等于13 -->
+			<input type="text" @keyup.enter="test7" />
+			<input type="text" @keyup.space="test8" />
+		</div>
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<script type="text/javascript">
+
+				var vm = new Vue({
+					el:"#demo",
+					data:{
+					},
+					methods:{
+						test1(event){
+							alert(event.target.innerHTML)
+						},
+						test2(msg){
+							alert(msg)
+						},
+						test3(msg,event){
+							alert(msg+'---'+event.target.innerHTML)
+							alert(msg+'---'+event.target.textContent)
+
+						},
+						test4(event){
+							// event.preventDefault()    //阻止默认行为
+							alert('点击了链接')
+						},
+						test5(){
+							alert("红色")
+						},
+						test6(event){
+							// event.stopPropagation()    //阻止冒泡
+							alert("篮色")
+						},
+						test7(event){
+							console.log(event.keyCode)
+							alert(event.target.value)
+						},
+						test8(event){
+							console.log(event.keyCode)
+							alert(event.target.value)
+						}
+						
+					},
+					computed:{
+						
+						
+					}
+				})
+			</script>
+	</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+		 .classA {
+		  color: red;
+		}
+		.classB {
+		  background: blue;
+		}
+		.classC {
+		  font-size: 20px;
+		}
+			
+		</style>
+	</head>
+	<body>
+		<div id="demo">
+			<h2>1.class绑定：class='xxx'</h2>
+			<p :class="myClass">xxx是字符串</p>
+			<p :class="{classA:hasclassA,classB:hasclassB}">xxx是对象</p>
+			<p :class="['classA','classB']">xxx是数组</p>
+			<h2>1.style绑定</h2>
+			<p :style="{color:activeColor,fontSize}">style</p>
+			<button @click="update">改变</button>
+		</div>
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<script type="text/javascript">
+
+				var vm = new Vue({
+					el:"#demo",
+					data:{
+						myClass:'classA',
+						hasclassA:true,
+						hasclassB:false,
+						activeColor:'red',
+						fontSize:'10px',
+						
+					},
+// 					 data: {
+// 					  myClass: 'classA',
+// 					  hasClassA: true,
+// 					  hasClassB: false,
+// 					  activeColor: 'red',
+// 					  fontSize: '20px'
+// 					},
+					methods:{
+						update(){
+							this.myClass = 'classA'
+							this.hasclassA = false
+							this.hasclassB = true
+							this.activeColor = 'yellow'
+							this.fontSize = '30px'
+							
+						}
+						
+					},
+					computed:{
+						
+						
+					}
+				})
+			</script>
+	</body>
+</html>

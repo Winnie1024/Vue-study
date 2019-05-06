@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="demo">
+			<p v-if="ok">v-if表白成功</p>
+			<p v-else>v-if表白失败</p>
+			<hr>
+			<p v-show="ok">v-show求婚成功</p>
+			<p v-show="!ok">v-show求婚失败</p>
+			<!-- <button @click="update">切换</button> --><!-- //只能切换一次 -->
+			<button @click="ok=!ok">切换</button>
+		</div>
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<script type="text/javascript">
+
+				var vm = new Vue({
+					el:"#demo",
+					data:{
+						ok:true,
+					},
+					methods:{
+						update(){
+							this.ok = false
+						}
+// 						
+					},
+					computed:{
+						
+						
+					}
+				})
+			</script>
+	</body>
+</html>
